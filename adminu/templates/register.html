@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$web.title} - 注册</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+</head>
+<body>
+<div class="page-wrapper flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <form method="POST">
+                    <div class="card p-4">
+                        <div class="card-header text-center text-uppercase h4 font-weight-light">
+                            {$web.title} - 注册
+                        </div>
+                        <div class="card-body py-5">
+                            <div class="form-group">
+                                <label class="form-control-label">用户名</label>
+                                <input type="name" name="name" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">邮箱</label>
+                                <input type="email" name="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">登录密码</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">确认密码</label>
+                                <input type="password" name="password1" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success btn-block">立即注册</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>大萝北网盘安装向导</title>
+</head>
+{$file = dirname(__FILE__)}
+<link rel="stylesheet" href="{$file}/css/bootstrap.min.css">
+<link rel="stylesheet" href="{$file}/css/ystep.css">
+<script type="text/javascript" src="{$file}/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="{$file}/js/bootstrap.min.js"></script>
+<script src="{$file}/js/ystep.js"></script>
+<style>
+.b {
+}
+.bb {
+}
+.z {
+	height: 99px;
+	margin-left: 2PX;
+	width: 300px;
+	float: left;
+}
+.contain {
+	margin: 20px;
+}
+.ystep2 {
+	margin-top: 20px;
+	float: right;
+}
+.bb {
+	float: right;
+	margin-top: 60px;
+	margin-right: 45px;
+}
+.te {
+	font-size: 20px;
+	color: #CCC;
+	margin-left: 45px;
+}
+.head {
+	font-size: 30px;
+	margin-left: 140px;
+	margin-top: 10px;
+	position: absolute;
+}
+.logo {
+	background-image: url(../admin/images/logo.png);
+	margin-top: 10px;
+	margin-left: 50px;
+	width: 85px;
+	height: 71px;
+	float: left;
+}
+.top {
+	height: 100px;
+	border-bottom: 1px solid #e7e7e7;
+}
+.zhu {
+	margin-top: 30px;
+	width: 900px;
+	margin-bottom: 20px;
+	border: 1px solid #e7e7e7;
+	box-shadow: 0px 0px 2px #BABABA;
+}
+body {
+	font-family: "微软雅黑";
+}
+</style>
+<body>
+<div align="center">
+  <div class="zhu">
+    <div class="top">
+      <div class="logo"></div>
+      <div class="head">
+        <div>大萝北网盘</div>
+        <div class="te" align="rgiht">安装向导</div>
+      </div>
+      <div class="ystep2" align="left"></div>
+    </div>
+    <div id="chenggong">
+      <div   align="center"style="font-size:30px;"> <img src="./logo.png" width="90" />安装成功,请确认install目录是否已被删除 </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <a class="btn btn-lg btn-info"style="width: 250px;" target="_blank" href="/admin"> 后台管理 </a>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+</div>
+</body>
+</html>
+<script>
+$(".ystep2").loadStep({
+  size: "large",
+  color: "green",
+  steps: [{
+	title: "协议",
+
+  },{
+	title: "配置",
+
+  },{
+	title: "安装",
+
+  },{
+  title: "信息",
+
+  },{
+	title: "完成",
+	
+  }]
+});
+$(".ystep2").setStep(5);
+</script>

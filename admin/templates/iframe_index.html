@@ -1,0 +1,134 @@
+ <!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$config.title} - 后台首页</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+</head>
+<body class="sidebar-fixed header-fixed">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card p-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="h4 d-block font-weight-normal mb-2">{$info.user}</span>
+                            <span class="font-weight-light">会员数量</span>
+                        </div>
+
+                        <div class="h2 text-muted">
+                            <i class="icon icon-people"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="h4 d-block font-weight-normal mb-2">{if empty($web.statistics)}0{else}{$web.statistics}{/if}</span>
+                            <span class="font-weight-light">文件总数</span>
+                        </div>
+
+                        <div class="h2 text-muted">
+                            <i class="icon icon-wallet"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="h4 d-block font-weight-normal mb-2">{if empty($web.member)}0{else}{$web.member}{/if}</span>
+                            <span class="font-weight-light">会员上传</span>
+                        </div>
+
+                        <div class="h2 text-muted">
+                            <i class="icon icon-wallet"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-4">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="h4 d-block font-weight-normal mb-2">{if empty($web.tourist)}0{else}{$web.tourist}{/if}</span>
+                            <span class="font-weight-light">游客上传</span>
+                        </div>
+
+                        <div class="h2 text-muted">
+                            <i class="icon icon-wallet"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        版本信息
+                    </div>
+
+                    <div class="card-body p-0">
+                        <div class="p-4">
+                            <div class="row pb-5 p-5">
+                                <div class="col-md-6">
+                                    <p class="font-weight-bold mb-4">版本说明</p>
+                                    <p class="mb-1">作者博客</p>
+                                    <p>程序作者</p>
+                                    <p class="mb-1">版本号:</p>
+                                    <p class="mb-1">更新时间</p>
+                                </div>
+
+                                <div class="col-md-6 text-right">
+                                    <p class="font-weight-bold mb-4">说明信息</p>
+                                    <p class="mb-1"><span class="text-muted"></span> www.imoecg.com</p>
+                                    <p class="mb-1"><span class="text-muted"></span> 一只大萝北</p>
+                                    <p class="mb-1"><span class="text-muted"></span> 1.0.0</p>
+                                    <p class="mb-1"><span class="text-muted"></span>2019-2-24</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="justify-content-around mt-4 p-4 bg-light d-flex border-top d-md-down-none">
+                            <div class="text-center">
+                                <div class="text-muted small">系统信息</div>
+                                <div>{PHP_OS}</div>
+                            </div>
+
+                            <div class="text-center">
+                                <div class="text-muted small">最大上传限制</div>
+                                <div>{get_cfg_var ("upload_max_filesize")}</div>
+                            </div>
+
+                            <div class="text-center">
+                                <div class="text-muted small">php版本</div>
+                                <div>{PHP_VERSION}</div>
+                            </div>
+
+                            <div class="text-center">
+                                <div class="text-muted small">占用最大内存</div>
+                                <div>{get_cfg_var ("memory_limit")}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 一颗大萝北 &middot; <a href="https://www.imoecg.com">www.imoecg.com</a>&middot; <a href="https://www.imoecg.com">一颗大萝北</a></p>
+        </div>
+    </div>
+    <script src="{$file}/templates/vendor/jquery/jquery.min.js"></script>
+    <script src="{$file}/templates/vendor/popper.js/popper.min.js"></script>
+    <script src="{$file}/templates/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{$file}/templates/vendor/chart.js/chart.min.js"></script>

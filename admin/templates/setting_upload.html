@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$config.title} - 上传设置</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+</head>
+<body>
+    <form  style="margin: 0;" method="POST">
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-light">
+                            上传设置
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="single-select">游客上传</label>
+                                <select id="single-select" class="form-control" name="tourist">
+                                    {if $uploaded.tourist}
+                                    <option value="yes">允许</option>
+                                    <option value="no">不允许</option>
+                                    {else}
+                                    <option value="no">不允许</option>
+                                    <option value="yes">允许</option>
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">允许上传大小(b)</label>
+                                <input id="normal-input" name="size" class="form-control" value="{if !empty($uploaded.size)}{$uploaded.size}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                 <label for="placeholder-input" class="form-control-label">允许上传类型(逗号分隔开)</label>
+                                <textarea id="textarea" name="type" class="form-control" rows="6">{$uploaded.up_type}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="保存设定" class="btn btn-primary">
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </form>
+<script src="{$file}/templates/vendor/jquery/jquery.min.js"></script>
+<script src="{$file}/templates/vendor/popper.js/popper.min.js"></script>
+<script src="{$file}/templates/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="{$file}/templates/vendor/chart.js/chart.min.js"></script>
+</body>
+</html>

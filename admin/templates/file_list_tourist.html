@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$web.title} - 游客文件列表</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+</head>
+<body>
+    <div class="content">
+        <div>
+            <div >
+                <div class="card">
+                    <div class="card-header bg-light">
+                        游客上传文件列表
+                    </div>
+                    <form style="width: 50%; margin-left:20%;" method="POST">
+                        <div class="card-header">
+                            <div class="input-group">
+                                <span class="btn">关键词:</span>
+                                <input type="text" id="input-group-2" name="search" class="form-control" placeholder="文件名,文件类型,ID,ip所在地" style="width: 50px">
+                                <span class="btn ">类型:</span>
+                                <select name="type" class="form-control">
+                                    <option value ="0">不限类型</option>
+                                    {foreach $type as $v}<option value ="{$v}">{$v}</option>{/foreach}
+                                </select>
+                                &nbsp;&nbsp;&nbsp;
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th><a href="#" id="Choice">全选/反选</a> </th>
+                                    <th>文件编号</th>
+                                    <th>文件名称</th>
+                                    <th>文件类型</th>
+                                    <th>文件大小</th>
+                                    <th>上传时间</th>
+                                    <th>上传IP</th>
+                                    <th>IP所在</th>
+                                    <th>文件删除</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach $InfoList as $v}
+                                    <tr>
+                                        <td><input type="checkbox" name="checkbox" value="{$v.id}"></td>
+                                        <td>{$v.id}</td>
+                                        <td class="text-nowrap">{$v.name}</td>
+                                        <td>{$v.type}</td>
+                                        <td>{$v.size}(B)</td>
+                                        <td>{$v.up_time}</td>
+                                        <td>{$v.up_ip}</td>
+                                        <td>{$v.ip_logaes}</td>
+                                        <th><a href="./file_list_tourist.php?Del=Choice&id={$v.id}{if !empty($smarty.get.pages)}&pages={$smarty.get.pages}{/if}" class="btn btn-danger" style="width: 90px; height: 25px; line-height: 10px;"><i class="fa fa-trash"></i>&nbsp;删除文件</a></th>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="width: 100%;">
+                            <a href="#" class="btn btn-danger" id="dle_Choice"><i class="fa fa-trash"></i>&nbsp;删除选中</a></th>
+                            <div style="margin-left: 90%">
+                                <a href="./file_list_tourist.php?pages={if empty($smarty.get.pages)}1{else}{if intval($smarty.get.pages)>=1}1{else}{intval($smarty.get.pages)-1}{/if}{/if}"> 上一页</a>&nbsp;&nbsp;&nbsp;
+                                <a href="./file_list_tourist.php?pages={if empty($smarty.get.pages)}1{else}{if intval($smarty.get.pages)<=0}1{else}{intval($smarty.get.pages)+1}{/if}{/if}"> 下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="{$file}/templates/vendor/jquery/jquery.min.js"></script>
+</body>
+<script type="text/javascript">
+    $("#Choice").click(function(){ 
+        $("input[name='checkbox']").each(function(){ 
+            if($(this).attr("checked")){ 
+                $(this).removeAttr("checked"); 
+            }else{ 
+                $(this).attr("checked","true"); 
+            } 
+        }) 
+    })
+    var Choice=""; 
+    $("#dle_Choice").click(function(){ 
+        $("input[name='checkbox']:checkbox:checked").each(function(){ 
+            Choice+=$(this).val()+':'
+        })
+        
+        window.location='./file_list_tourist.php?Del=Choice&id='+Choice{if !empty($smarty.get.pages)}'&pages='{$smarty.get.pages}{/if};
+    })
+</script>
+</html>

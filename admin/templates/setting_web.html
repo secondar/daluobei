@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$config.title} - 网站设置</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+</head>
+<body>
+    <form class="content" style="margin: 0;" method="POST">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-light">
+                                网站设置
+                            </div>
+                            <div class="card-body">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="normal-input" class="form-control-label">站点标题</label>
+                                        <input id="normal-input" name="title" class="form-control" value="{$config.title}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="normal-input" class="form-control-label">站点副标题</label>
+                                        <input id="normal-input" name="vicetitle" class="form-control" value="{$config.vicetitle}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                         <label for="normal-input" class="form-control-label">站点描述</label>
+                                        <input id="normal-input" name="describe" class="form-control" value="{$config.describe}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="placeholder-input" class="form-control-label">站点连接</label>
+                                        <input id="normal-input" name="url" class="form-control" value="{$config.url}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="placeholder-input" class="form-control-label">ICP备案号</label>
+                                        <input id="normal-input" name="icp" class="form-control" value="{if !empty($config.icp)}{$config.icp}{/if}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                         <label for="placeholder-input" class="form-control-label">统计代码</label>
+                                        <textarea id="textarea" name="cnzz" class="form-control" rows="6">{if !empty($config.cnzz)}{$config.cnzz}{/if}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="submit" name="submit" value="保存设定" class="btn btn-primary">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>
+<script src="{$file}/templates/vendor/jquery/jquery.min.js"></script>
+<script src="{$file}/templates/vendor/popper.js/popper.min.js"></script>
+<script src="{$file}/templates/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="{$file}/templates/vendor/chart.js/chart.min.js"></script>
+</body>
+</html>

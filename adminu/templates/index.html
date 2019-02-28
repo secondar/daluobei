@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{$web.title} - 会员中心</title>
+    {$file = dirname(__FILE__)}
+    <link rel="stylesheet" href="{$file}/templates/vendor/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{$file}/templates/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{$file}/templates/css/styles.css">
+    <script src="{$file}/templates/vendor/jquery/jquery.min.js"></script>
+    <script src="{$file}/templates/vendor/popper.js/popper.min.js"></script>
+    <script src="{$file}/templates/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{$file}/templates/vendor/chart.js/chart.min.js"></script>
+    <script src="{$file}/templates/js/carbon.js"></script>
+</head>
+<body class="sidebar-fixed header-fixed">
+<div class="page-wrapper">
+    <nav class="navbar page-header">
+        <a href="#" class="btn btn-link sidebar-mobile-toggle d-md-none mr-auto">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <a class="navbar-brand" href="#">
+            <img src="{$file}/templates/imgs/logo.png" alt="logo">
+        </a>
+
+        <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <ul class="navbar-nav ml-auto">
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{$file}/templates/imgs/avatar-1.png" class="avatar avatar-sm" alt="logo">
+                    <span class="small ml-1 d-md-down-none">{if empty($smarty.session.u_name)}{$smarty.cookies.u_name}{else}{$smarty.session.u_name}{/if}</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header">管理</div>
+                    <a href="javascript:void(0);" onclick="click_iframe('./file_list_all.php')" class="dropdown-item">
+                        <i class="fa fa-envelope"></i> 文件管理
+                    </a>
+                    <a href="./logout.php" class="dropdown-item">
+                        <i class="fa fa-lock"></i> 退出登录
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="nav">
+                    <li class="nav-title">一只大萝北</li>
+
+                    <li class="nav-item">
+                        <a href="javascript:void(0);" onclick="url()"  class="nav-link nav-dropdown-toggle" target="view_window">
+                            <i class="icon icon-speedometer"></i> 站点首页<i class="fa"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0);" onclick="click_iframe('./file_list_all.php')" class="nav-link">
+                            <i class="icon icon-target"></i> 文件管理
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0);" onclick="click_iframe('./manage_password.php')" class="nav-link">
+                            <i class="icon icon-target"></i> 密码修改
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./logout.php" class="nav-link">
+                            <i class="icon icon-puzzle"></i> 注销登录
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <iframe src="./file_list_all.php" width="100%" height="100%"   frameborder="0"  name="iframe" scrolling="auto" id="iframe">
+            </iframe>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function click_iframe(url){
+        window.frames["iframe"].location.href=url;
+    }
+    function url(){
+        window.location.href='/';
+    }
+</script>
+</html>
