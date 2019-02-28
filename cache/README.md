@@ -1,1 +1,1 @@
-echo "# daluobei" >> README.md
+# daluobei
