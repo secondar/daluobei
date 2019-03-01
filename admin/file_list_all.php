@@ -33,6 +33,13 @@ if(check::is_post()){
 		}
 		$arrInfo = $objWebInit->db_select('infolist');
 		foreach ($arrInfo as $k => $v) {
+			$Config['uploaded'][$v['type']] = $Config['uploaded']['type']-1;
+			if($v['id_type']==2){
+				$Config['uploaded']['member'] = $Config['uploaded']['member']-1;
+			}else{
+				$Config['uploaded']['tourist'] = $Config['uploaded']['tourist']-1;
+			}
+			$Config['uploaded']['statistics'] = $Config['uploaded']['statistics']-1;
 			$Paht = __WEB_ROOT.'/uploaded/'.$v['url'];
 			@unlink($Paht);
 		}
@@ -43,7 +50,6 @@ if(check::is_post()){
 				$objWebInit->db_where('id',$arrId[$i],'=','or');
 			}
 		}
-		$Config['uploaded']['tourist'] = $Config['uploaded']['tourist']-count($arrId);
 		$content = '<?php' . "\n" .'$Config = '. var_export( $Config, true ) . ';' . "\n" . '?>';
 		$objWebInit->write_file(dirname(__FILE__)."/..".'/data/config.php',$content);
 		$objWebInit->db_delete('infolist');
