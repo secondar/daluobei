@@ -8,6 +8,6 @@ $arrOutput['info']['user'] = $user[0]['user'];
 if(empty($arrOutput['info']['user'])){
 	$arrOutput['info']['user']=0;
 }
-$arrOutput['web'] = $Config['uploaded'];
+@$arrOutput['web'] = $Config['uploaded'];
 $arrOutput['config'] = $Config['web'];
 $objWebInit->output($arrOutput,'./templates/iframe_index.html');

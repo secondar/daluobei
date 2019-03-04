@@ -13,6 +13,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if($arrUploaded['state']){
 			$arrRes['name'] = $arrUploaded['name'];
 			$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
+			$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
+			$addr = json_decode($addr,true);
+			$addr = $addr['addr'];
+
 			$arrInfo = array(
 				'name'=>$arrUploaded['name'],
 				'url'=>$arrUploaded['url'],
@@ -21,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				'id_type'=>'1',
 				'up_time'=>date("Y-m-d H:i:s"),
 				'up_ip'=>$objWebInit->getIp(),
-				'ip_logaes' => '待完成'
+				'ip_logaes' => $addr
 			);
 			$objWebInit->db_insert('infolist',$arrInfo);
 			if(empty($Config['uploaded']['statistics'])){
@@ -56,6 +60,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($arrUploaded['state']){
 				$arrRes['name'] = $arrUploaded['name'];
 				$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
+				$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
+				$addr = json_decode($addr,true);
+				$addr = $addr['addr'];
 				$arrInfo = array(
 					'name'=>$arrUploaded['name'],
 					'url'=>$arrUploaded['url'],
@@ -65,7 +72,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					'id_type'=>'2',
 					'up_time'=>date("Y-m-d H:i:s"),
 					'up_ip'=>$objWebInit->getIp(),
-					'ip_logaes' => '待完成'
+					'ip_logaes' => $addr
 				);
 				$objWebInit->db_insert('infolist',$arrInfo);
 				if(empty($arrUserinfo[0]['u_number'])){
