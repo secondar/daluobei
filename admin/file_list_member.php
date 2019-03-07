@@ -33,9 +33,12 @@ if(check::is_post()){
 	}
 }else if(!empty($_GET['Del'])){
 	if ($_GET['Del'] = 'Choice') {
-		$_GET['id'] = substr($_GET['id'],0,strlen($_GET['id'])-1);
+		// $_GET['id'] = substr($_GET['id'],0,strlen($_GET['id'])-1);
 		$arrId = explode(':',$_GET['id']);
 		for ($i=0; $i < count($arrId); $i++) { 
+			if(empty($arrId)){
+				continue;
+			}
 			if($i==0){
 				$objWebInit->db_where('id',$arrId[$i],'=');
 			}else{
@@ -44,15 +47,20 @@ if(check::is_post()){
 		}
 		$arrInfo = $objWebInit->db_select('infolist');
 		foreach ($arrInfo as $k => $v) {
-			$Config['uploaded'][$v['type']] = $Config['uploaded']['type']-1;
+			$Config['uploaded'][$v['type']] = $Config['uploaded'][$v['type']]-1;
 			if($v['id_type']==2){
 				$Config['uploaded']['member'] = $Config['uploaded']['member']-1;
 			}else{
 				$Config['uploaded']['tourist'] = $Config['uploaded']['tourist']-1;
 			}
 			$Config['uploaded']['statistics'] = $Config['uploaded']['statistics']-1;
-			$Paht = __WEB_ROOT.'/uploaded/'.$v['url'];
-			@unlink($Paht);
+			if($v['mark']==1){
+				$Paht = __WEB_ROOT.'/uploaded/'.$v['url'];
+				@unlink($Paht);
+			}else if($v['mark']==2){
+				$objQiniu = new qiniu_upload();
+				$objQiniu ->qiniu_delete($v['url']);
+			}
 		}
 		for ($i=0; $i < count($arrId); $i++) { 
 			if($i==0){
@@ -74,12 +82,7 @@ if(empty($_GET['pages'])|| intval($_GET['pages'])==1){
 }else{
 	$intMinLimit= intval($_GET['pages'])*20;
 }
-foreach ($Config['config']['up_type'] as $k => $v) {
-	$arrTmp = explode('/', $v);
-	$arrType[] = $arrTmp[1];
-}
 $arrInfoList = $objWebInit->db_select('infolist','*',$intMinLimit,20,'ORDER BY id DESC');
 $arrOutput['InfoList'] = $arrInfoList;
 $arrOutput['web'] = $Config['web'];
-$arrOutput['type'] = $arrType;
 $objWebInit->output($arrOutput,'./templates/file_list_member.html');

@@ -33,9 +33,12 @@ if(check::is_post()){
 	}
 }else if(!empty($_GET['Del'])){
 	if ($_GET['Del'] = 'Choice') {
-		$_GET['id'] = substr($_GET['id'],0,strlen($_GET['id'])-1);
+		// $_GET['id'] = substr($_GET['id'],0,strlen($_GET['id'])-1);
 		$arrId = explode(':',$_GET['id']);
 		for ($i=0; $i < count($arrId); $i++) { 
+			if(empty($arrId)){
+				continue;
+			}
 			if($i==0){
 				$objWebInit->db_where('id',$arrId[$i],'=');
 			}else{
@@ -51,8 +54,13 @@ if(check::is_post()){
 				$Config['uploaded']['tourist'] = $Config['uploaded']['tourist']-1;
 			}
 			$Config['uploaded']['statistics'] = $Config['uploaded']['statistics']-1;
-			$Paht = __WEB_ROOT.'/uploaded/'.$v['url'];
-			@unlink($Paht);
+			if($v['mark']==1){
+				$Paht = __WEB_ROOT.'/uploaded/'.$v['url'];
+				@unlink($Paht);
+			}else if($v['mark']==2){
+				$objQiniu = new qiniu_upload();
+				$objQiniu ->qiniu_delete($v['url']);
+			}
 		}
 		for ($i=0; $i < count($arrId); $i++) { 
 			if($i==0){

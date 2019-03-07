@@ -46,6 +46,44 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="single-select">上传方式</label>
+                                <select id="single-select" class="form-control" name="mode">
+                                    {if $uploaded.mode==1}
+                                    <option value="1">本地</option>
+                                    <option value="2">七牛</option>
+                                    {else}
+                                    <option value="2">七牛</option>
+                                    <option value="1">本地</option>
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">七牛access_key</label>
+                                <input id="normal-input" name="access_key" class="form-control" value="{if !empty($uploaded.access_key)}{$uploaded.access_key}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">七牛secret_key</label>
+                                <input id="normal-input" name="secret_key" class="form-control" value="{if !empty($uploaded.secret_key)}{$uploaded.secret_key}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">七牛bucket</label>
+                                <input id="normal-input" name="bucket" class="form-control" value="{if !empty($uploaded.bucket)}{$uploaded.bucket}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">七牛Url</label>
+                                <input id="normal-input" name="url" class="form-control" value="{if !empty($uploaded.url)}{$uploaded.url}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <input type="submit" name="submit" value="保存设定" class="btn btn-primary">
                             </div>
                         </div>

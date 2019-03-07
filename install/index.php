@@ -62,6 +62,7 @@ if(empty($_GET['page']) || intval($_GET['page']) ==1){
 						  `size` varchar(255)  NOT NULL COMMENT '文件大小',
 						  `u_id` varchar(50)  NOT NULL DEFAULT 0  COMMENT '用户ID',
 						  `id_type` varchar(50)  NOT NULL DEFAULT 1 COMMENT '用户类型,1=游客,2=会员',
+						  `mark` char(1) NOT NULL DEFAULT 1 COMMENT '储存位置,1=本地,2=七牛云',
 						  `up_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'  COMMENT '上传时间',
 						  `up_ip` char(23)  DEFAULT NULL COMMENT '上传IP',
 						  `ip_logaes` varchar(50)  DEFAULT NULL COMMENT 'IP所在地址',
@@ -113,6 +114,7 @@ if(empty($_GET['page']) || intval($_GET['page']) ==1){
 	$Config['web']['describe']=$_POST['describe'];
 	$Config['web']['jam']=$_POST['jam'];
 	$Config['config'] = array (
+		'mode'=>1,
 	    'tourist' => true,
 	    'size'=>10000000,
 	    'up_type' => 

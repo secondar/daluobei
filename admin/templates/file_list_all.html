@@ -62,7 +62,7 @@
                                         <td>{$v.up_time}</td>
                                         <td>{$v.up_ip}</td>
                                         <td>{$v.ip_logaes}</td>
-                                        <th><a href="./file_list_tourist.php?Del=Choice&id={$v.id}{if !empty($smarty.get.pages)}&pages={$smarty.get.pages}{/if}" class="btn btn-danger" style="width: 90px; height: 25px; line-height: 10px;"><i class="fa fa-trash"></i>&nbsp;删除文件</a></th>
+                                        <th><a href="./file_list_all.php?Del=Choice&id={$v.id}{if !empty($smarty.get.pages)}&pages={$smarty.get.pages}{/if}" class="btn btn-danger" style="width: 90px; height: 25px; line-height: 10px;"><i class="fa fa-trash"></i>&nbsp;删除文件</a></th>
                                     </tr>
                                 {/foreach}
                                 </tbody>
@@ -98,7 +98,7 @@
             Choice+=$(this).val()+':'
         })
         
-        window.location='./file_list_tourist.php?Del=Choice&id='+Choice{if !empty($smarty.get.pages)}'&pages='{$smarty.get.pages}{/if};
+        window.location='./file_list_all.php?Del=Choice&id='+Choice{if !empty($smarty.get.pages)}'&pages='{$smarty.get.pages}{/if};
     })
 </script>
 </html>
