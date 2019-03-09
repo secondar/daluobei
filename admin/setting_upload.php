@@ -43,6 +43,19 @@ if (check::is_post()) {
 			$strMsg = '七牛access_key不能为空';
 		}
 	}
+	if($_POST['sexy_on']==1){
+		if(!empty($_POST['sexy_key'])){
+			if($_POST['sexy_sexy']==1){
+				$Config['config']['sexy'] = true;
+			}
+			$Config['config']['sexy_on'] = true;
+			$Config['config']['sexyKey'] = trim($_POST['sexy_key']);
+		}else{
+			$strMsg = '鉴黄key不能为空';
+		}
+	}else{
+		$Config['config']['sexy_on'] = false;
+	}
 	$Config['config']['up_type'] = $arrType;
 	$content = '<?php' . "\n" .'$Config = '. var_export( $Config, true ) . ';' . "\n" . '?>';
 	$objWebInit->write_file(dirname(__FILE__)."/..".'/data/config.php',$content);
@@ -54,6 +67,8 @@ foreach ($Config['config']['up_type'] as $v) {
 }
 $Config['config']['up_type']=$strType;
 $arrOutput['uploaded'] = $Config['config'];
-$arrOutput['uploaded'] = $arrOutput['uploaded'] + $Config['qiniu'];
+if(!empty($Config['qiniu'])){
+	$arrOutput['uploaded'] = $arrOutput['uploaded'] + $Config['qiniu'];
+}
 $arrOutput['config'] = $Config['web'];
 $objWebInit->output($arrOutput,'./templates/setting_upload.html');

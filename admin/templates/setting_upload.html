@@ -84,6 +84,42 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <!-- $Config['config']['sexy'] -->
+                                <label for="single-select">图片鉴黄</label>
+                                <select id="single-select" class="form-control" name="sexy_on">
+                                    {if $uploaded.sexy_on}
+                                    <option value="1">开启</option>
+                                    <option value="2">关闭</option>
+                                    {else}
+                                    <option value="2">关闭</option>
+                                    <option value="1">开启</option>
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <!-- $Config['config']['sexy'] -->
+                                <label for="single-select">严格模式</label>
+                                <select id="single-select" class="form-control" name="sexy_sexy">
+                                    {if $uploaded.sexy}
+                                    <option value="1">开启</option>
+                                    <option value="2">关闭</option>
+                                    {else}
+                                    <option value="2">关闭</option>
+                                    <option value="1">开启</option>
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="placeholder-input" class="form-control-label">key(申请地址:https://www.moderatecontent.com/<免费>)</label>
+                                <input id="normal-input" name="sexy_key" class="form-control" value="{if !empty($uploaded.sexyKey)}{$uploaded.sexyKey}{/if}">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <input type="submit" name="submit" value="保存设定" class="btn btn-primary">
                             </div>
                         </div>

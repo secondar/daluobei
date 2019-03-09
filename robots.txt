@@ -1,0 +1,15 @@
+# robots.txt generated at http://tool.chinaz.com/robots/ 
+User-agent: *
+Disallow: 
+Disallow: /admin/
+Disallow: /adminu/file_list_all.php
+Disallow: /adminu/logout.php
+Disallow: /adminu/upload.php
+Disallow: /adminu/manage_password.php
+Disallow: /adminu/templates
+Disallow: /Pure/
+Disallow: /templates/
+Disallow: /data/
+Disallow: /cache/
+Disallow: /config/
+Disallow: /uploaded/

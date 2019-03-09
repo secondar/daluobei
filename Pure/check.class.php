@@ -115,4 +115,28 @@ class check {
 	    session_unset();
 		session_destroy();
 	}
+	/**
+	 * [is_sexy 图片鉴黄]
+	 * @param  [string]  $strUrl [图片URL]
+	 * @return [array]         [返回结果||其中code为bool为true时无错误,adopt为bool为true时为正常图片]
+	 */
+	static function is_sexy($strUrl){
+		$obj = new Secondar();
+		Global $Config;
+		$strKey = $Config['config']['sexyKey'];
+		$res = $obj->curl_https('https://www.moderatecontent.com/api/v2?key='.$strKey.'&url='.$strUrl);
+		$res = json_decode($res,true);
+		if($res['error_code']==0){
+			if ($res['rating_index']==3) {
+				$res['code'] = true;
+				$res['adopt'] = false;
+			}else{
+				$res['code'] = true;
+				$res['adopt'] = true;
+			}
+		}else{
+			$res['code'] = false;
+		}
+		return $res;
+	}
 }  

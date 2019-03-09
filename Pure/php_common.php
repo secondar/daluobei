@@ -625,7 +625,7 @@ class Secondar{
 	}
 	/** [curl_https 获取 https 请求]
 	* @param [String] [$url ]       [请求的url]
-	* @param [Array]  [$data]       [要發送的數據]
+	* @param [Array]  [$data]       [要发送的数据]
 	* @param [Array]  [$header]     [请求时发送的header]
 	* @param [int]    [$timeout]    [超时时间，默认30s]
 	* @param [bool]   [$debug ]     [是否打印错误信息，默认false]

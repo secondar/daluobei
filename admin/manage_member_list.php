@@ -52,4 +52,4 @@ if(empty($_GET['pages'])|| intval($_GET['pages'])==1){
 $arrInfoList = $objWebInit->db_select('mcenter','*',$intMinLimit,20,'ORDER BY u_id DESC');
 $arrOutput['InfoList'] = $arrInfoList;
 $arrOutput['web'] = $Config['web'];
-$objWebInit->output($arrOutput,'./templates/manage_passwoed.html');
+$objWebInit->output($arrOutput,'./templates/manage_member_list.html');

@@ -9,7 +9,7 @@ if(!empty($_SESSION["u_id"])){
 }
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	if($Config['config']['tourist'] && empty($intId)){
-		if($Config['qiniu']['active']){
+		if($Config['config']['mode']==2){
 			if (!in_array($_FILES['file']['type'],$Config['config']['up_type'])){
 				$arrRes = 'error : 文件类型不符合要求 code : 108';
 				check::json_exit($arrRes);
@@ -26,15 +26,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				print_r($arrUploaded);exit();
 			}
 		}else{
-			$arrUploaded = $objWebInit->uploaded_file($_FILES['file'],$Config['config']['up_type'],__WEB_ROOT.'/uploaded/','',1024000000);
+			$arrUploaded = $objWebInit->uploaded_file($_FILES['file'],$Config['config']['up_type'],__WEB_ROOT.'/uploaded/','',$Config['config']['size']);
 			$arrUploaded['mark'] = 1;
 		}
 		if($arrUploaded['state']){
 			$arrRes['name'] = $arrUploaded['name'];
-			if($Config['qiniu']['active']){
+			if($Config['config']['mode']==2){
 				$arrRes['url'] = $Config['qiniu']['url'].'/'.$arrUploaded['url'];
 			}else{
 				$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
+			}
+			if(!empty($Config['config']['sexy_on'])&&$Config['config']['sexy_on']){
+				$res = check::is_sexy($arrRes['url']);
+				$strType = explode('/', $arrUploaded['type']);
+				if($strType[0]=='image'){
+					if($res['code']){
+						if(!$res['adopt']){
+							if($Config['config']['mode']==1){
+								@unlink($Paht = __WEB_ROOT.'/uploaded/'.$arrUploaded['url']);
+							}else if($v['mode']==2){
+								$objQiniu ->qiniu_delete($arrUploaded['url']);
+							}
+							check::json_exit('图片涉嫌违规');
+						}
+					}else if(!empty($Config['config']['sexy'])&&$Config['config']['sexy']){
+						if($Config['config']['mode']==1){
+							@unlink($Paht = __WEB_ROOT.'/uploaded/'.$arrUploaded['url']);
+						}else if($v['mode']==2){
+							$objQiniu ->qiniu_delete($arrUploaded['url']);
+						}
+						check::json_exit('图片涉嫌违规');
+					}
+				}
 			}
 			$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
 			$addr = json_decode($addr,true);
@@ -96,7 +119,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					print_r($arrUploaded);exit();
 				}
 			}else{
-				$arrUploaded = $objWebInit->uploaded_file($_FILES['file'],$Config['config']['up_type'],__WEB_ROOT.'/uploaded/','',1024000000);
+				$arrUploaded = $objWebInit->uploaded_file($_FILES['file'],$Config['config']['up_type'],__WEB_ROOT.'/uploaded/','',$Config['config']['size']);
 				$arrUploaded['mark'] = 1;
 			}
 			if($arrUploaded['state']){
@@ -104,6 +127,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					$arrRes['url'] = $Config['qiniu']['url'].'/'.$arrUploaded['url'];
 				}else{
 					$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
+				}
+				if(!empty($Config['config']['sexy_on'])&&$Config['config']['sexy_on']){
+					$res = check::is_sexy($arrRes['url']);
+					$strType = explode('/', $arrUploaded['type']);
+					if($strType[0]=='image'){
+						if($res['code']){
+							if(!$res['adopt']){
+								if($Config['config']['mode']==1){
+									@unlink($Paht = __WEB_ROOT.'/uploaded/'.$arrUploaded['url']);
+								}else if($v['mode']==2){
+									$objQiniu ->qiniu_delete($arrUploaded['url']);
+								}
+								check::json_exit('图片涉嫌违规');
+							}
+						}else if(!empty($Config['config']['sexy'])&&$Config['config']['sexy']){
+							if($Config['config']['mode']==1){
+								@unlink($Paht = __WEB_ROOT.'/uploaded/'.$arrUploaded['url']);
+							}else if($v['mode']==2){
+								$objQiniu ->qiniu_delete($arrUploaded['url']);
+							}
+							check::json_exit('图片涉嫌违规');
+						}
+					}
 				}
 				$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
 				$addr = json_decode($addr,true);
