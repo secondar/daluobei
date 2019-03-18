@@ -124,7 +124,7 @@ class check {
 		$obj = new Secondar();
 		Global $Config;
 		$strKey = $Config['config']['sexyKey'];
-		$res = $obj->curl_https('https://www.moderatecontent.com/api/v2?key='.$strKey.'&url='.$strUrl);
+		$res = $obj->curl_http('https://www.moderatecontent.com/api/v2?key='.$strKey.'&url='.$strUrl);
 		$res = json_decode($res,true);
 		if($res['error_code']==0){
 			if ($res['rating_index']==3) {

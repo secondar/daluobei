@@ -37,9 +37,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
 			}
 			if(!empty($Config['config']['sexy_on'])&&$Config['config']['sexy_on']){
-				$res = check::is_sexy($arrRes['url']);
 				$strType = explode('/', $arrUploaded['type']);
 				if($strType[0]=='image'){
+					$res = check::is_sexy($arrRes['url']);
 					if($res['code']){
 						if(!$res['adopt']){
 							if($Config['config']['mode']==1){
@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					}
 				}
 			}
-			$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
+			$addr = $objWebInit->curl_http('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
 			$addr = json_decode($addr,true);
 			$addr = $addr['addr'];
 			$arrInfo = array(
@@ -129,9 +129,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					$arrRes['url'] = $Config['web']['url'].'/uploaded/'.$arrUploaded['url'];
 				}
 				if(!empty($Config['config']['sexy_on'])&&$Config['config']['sexy_on']){
-					$res = check::is_sexy($arrRes['url']);
 					$strType = explode('/', $arrUploaded['type']);
 					if($strType[0]=='image'){
+						$res = check::is_sexy($arrRes['url']);
 						if($res['code']){
 							if(!$res['adopt']){
 								if($Config['config']['mode']==1){
@@ -151,7 +151,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 						}
 					}
 				}
-				$addr = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
+				$addr = $objWebInit->curl_http('https://ip.ttt.sh/api.php?ip='.$objWebInit->getIp().'&type=json');
 				$addr = json_decode($addr,true);
 				$addr = $addr['addr'];
 				$arrInfo = array(

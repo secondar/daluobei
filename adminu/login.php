@@ -17,7 +17,7 @@ if(check::is_post()){
 		if(!empty($arrAInfo)){
 			$arrData['u_logtime'] = date("Y-m-d H:i:s");
 			$arrData['u_ip'] = $objWebInit->getIp();
-			$arrData['u_logaes'] = $objWebInit->curl_https('https://ip.ttt.sh/api.php?ip='.$arrData['u_ip'].'&type=json');
+			$arrData['u_logaes'] = $objWebInit->curl_http('https://ip.ttt.sh/api.php?ip='.$arrData['u_ip'].'&type=json');
 			$arrData['u_logaes'] = json_decode($arrData['u_logaes'],true);
 			$arrData['u_logaes'] = $arrData['u_logaes']['addr'];
 			$objWebInit->db_where('u_id',$arrAInfo[0]['u_id'],'=');
