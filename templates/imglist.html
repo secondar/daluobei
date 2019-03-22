@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{$web.title} {$web.vicetitle}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{$web.url}/templates/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="{$web.url}/templates/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="index.php"><strong>{$web.title}</strong> {$web.vicetitle}</a></h1>
+						<nav>
+							<ul>
+								<li><a href="./">首页</a></li>
+								<li><span style="margin-right: 50px;">{if empty($smarty.get.pages)}1{else}{$smarty.get.pages}{/if}/{$web.page}</span></li>
+								<li>{if empty($smarty.get.pages)}上一页{else}{if $smarty.get.pages>1}<a href="./imglist.php?pages={$smarty.get.pages-1}">上一页</a>{else}上一页{/if}{/if}</li>
+								<li>{if empty($smarty.get.pages)}
+									{if $web.page<=1}
+										下一页
+									{else}
+										<a href="./imglist.php?pages=2">下一页</a>
+									{/if}
+								{else}
+									{if $smarty.get.pages==1}
+										{if $web.page<=1}
+											下一页
+										{else}
+											<a href="./imglist.php?pages=2">下一页</a>
+										{/if}
+									{else}
+										{if $web.page<=$smarty.get.pages}
+											下一页
+										{else}
+											<a href="./imglist.php?pages={$smarty.get.pages+1}">下一页</a>
+										{/if}
+									{/if}
+								{/if}</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+						{foreach $arrInfoList as $arrData}
+						<article class="thumb">
+							<a href="./uploaded/{$arrData.url}" class="image"><img src="./uploaded/{$arrData.url}" alt="" /></a>
+							<h2>{$arrData.name}</h2>
+							<p>上传时间:{$arrData.up_time}<br>文件大小:{$arrData.size}</p>
+						</article>
+						{/foreach}
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{$web.url}/templates/assets/js/jquery.min.js"></script>
+			<script src="{$web.url}/templates/assets/js/jquery.poptrox.min.js"></script>
+			<script src="{$web.url}/templates/assets/js/browser.min.js"></script>
+			<script src="{$web.url}/templates/assets/js/breakpoints.min.js"></script>
+			<script src="{$web.url}/templates/assets/js/util.js"></script>
+			<script src="{$web.url}/templates/assets/js/main.js"></script>
+	</body>
+</html>
