@@ -16,7 +16,8 @@ if(empty($_GET['page']) || intval($_GET['page']) ==1){
 					@$db = new mysqli($_POST['host'],$_POST['name'],$_POST['pwd'],$_POST['db'],$_POST['port']);
 					if (mysqli_connect_errno()){
 						$strViews = '../install/templates/deploy.html';
-						echo "<script>alert('无法连接数据库，错误信息：".mysqli_connect_error()."请检查数据库信息是否正确');</script>";
+						check::Alert('无法连接数据库，错误信息：'.mysqli_connect_error().'请检查数据库信息是否正确');
+						exit();
 					}else{
 						mysqli_query($db,"SET NAMES utf8");
 						$arrSql= array();
